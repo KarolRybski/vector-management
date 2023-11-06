@@ -1,0 +1,147 @@
+#include <iostream>
+#include <vector>
+#include <windows.h>
+using namespace std;
+
+void sortLowToHigh(vector <int> numbers)
+{
+    int bufor;
+    for (int j{}; j < numbers.size(); j++)
+    {
+        for (int i{}; i < numbers.size() - 1; i++)
+        {
+            if (numbers.at(i) > numbers.at(i + 1))
+            {
+                bufor = numbers.at(i + 1);
+                numbers.at(i + 1) = numbers.at(i);
+                numbers.at(i) = bufor;
+            }
+        }
+    }
+    cout << numbers.at(numbers.size() - 1);
+}
+
+void sortHighToLow(vector <int> numbers)
+{
+    int bufor;
+    for (int j{}; j < numbers.size(); j++)
+    {
+        for (int i{}; i < numbers.size() - 1; i++)
+        {
+            if (numbers.at(i) < numbers.at(i + 1))
+            {
+                bufor = numbers.at(i + 1);
+                numbers.at(i + 1) = numbers.at(i);
+                numbers.at(i) = bufor;
+            }
+        }
+    }
+    cout << numbers.at(numbers.size()-1);
+}
+
+int main()
+{
+    vector <int> numbers;
+    while (1 == 1)
+    {
+        system("cls");
+        char choice{};
+        cout << "P - print numbers\n";
+        cout << "A - add a number\n";
+        cout << "M - display mean of numbers\n";
+        cout << "S - display the smallest number\n";
+        cout << "L - display the largest number\n";
+        cout << "Q - quit\n\n";
+        cin >> choice;
+        switch (choice)
+        {
+        case ('Q'):
+        case ('q'):
+        {
+            system("cls");
+            cout << "Exiting...\n";
+            exit(0);
+            break;
+        }
+        case ('P'):
+        case ('p'):
+        {
+            system("cls");
+            if (numbers.size() > 0)
+            {
+                cout << "The list contains: ";
+                for (int i{}; i < numbers.size(); i++)
+                {
+                    cout << numbers.at(i) << " ";
+                }
+                cout << ".";
+                Sleep(3000);
+            }
+            else
+            {
+                system("cls");
+                cout << "The list is empty.\n";
+                Sleep(1000);
+            }
+            break;
+        }
+        case ('A'):
+        case ('a'):
+        {
+            system("cls");
+            cout << "Choose a number to add to the list: \n";
+            int number{};
+            cin >> number;
+            numbers.push_back(number);
+            system("cls");
+            cout << number << " added to the list.";
+            Sleep(1000);
+            break;
+        }
+        case ('M'):
+        case ('m'):
+        {
+            system("cls");
+            cout << "The list contains " << numbers.size() << " elements.";
+            Sleep(3000);
+            break;
+        }
+        case ('S'):
+        case ('s'):
+        {
+            system("cls");
+            if (numbers.size() > 0)
+            {
+                cout << "The smallest number is ";
+                sortHighToLow(numbers);
+                cout << ".";
+                Sleep(3000);
+            }
+            else
+            {
+                cout << "The list is empty.\n";
+                Sleep(3000);
+            }
+            break;
+        }
+        case ('L'):
+        case ('l'):
+        {
+            system("cls");
+            if (numbers.size() > 0)
+            {
+                cout << "The largest number is ";
+                sortLowToHigh(numbers);
+                cout << ".";
+                Sleep(3000);
+            }
+            else
+            {
+                cout << "The list is empty.\n";
+                Sleep(3000);
+            }
+            break;
+        }
+        }
+    }
+}
